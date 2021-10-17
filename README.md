@@ -1,2 +1,20 @@
 # Pewlett-Hackard-Analysis
-GWU bootcamp SQL practicing
+#### GWU bootcamp SQL practicing
+# Challenge 
+## 1.	Overview of the analysis:
+- In this module and challenge, I practiced and learned on how to model, engineer and analyze data. Using the learned knowledge from the previous modules, which especially based on Python and Jupyter Notebook and its code writing to form the DataFrames to analyse the tabular data, I learned and gained experience in creating entity relationship diagrams (ERDs), importing data into a database, troubleshooting common errors<img src="Data\existingpkerror.PNG" width="20" height="20">, and creating queries that use data to answer questions. 
+
+- SQL is one of the most widely used query languages. Its ability to organize and query data, especially on a large scale, makes SQL knowledge a highly sought-after skill in the workforce. I learned that SQL queries and their results are performed using the PostgreSQL and pgAdmin. PostgreSQL is a relational database system. This type of database consists of tables and their predefined relationships; and pgAdmin is the interface where my queries were written and executed and where results were viewed. 
+Goal of the Module 7’s challenge: Pewlett Hackard (PH) is offering retirement package for those who meet certain criteria. Also, the company wants to know which positions needs to be filled in the near future. Therefore, Bobby helped PH in giving their voluminous data in organization and budgeting it for their future job openings. There were six CSV files given by PH to Bobby on which he performed SQL filtering and creating new tables with the help of ERD. <img src="Queries\Employee_Database_challenge.sql\Relationshipofbasictables.PNG" width="20" height="20">
+## 2.	Results:
+###	 From Deliverable 1: 
+#### 	- 133776 is the total number of retiring employees. This is the number that depicts the employees that have multiple roles in Pewlett Hackward during their employment. The employees were born between January 1, 1952 and December 31, 1955. This data is shown in retirement_titles.csv file. <img src="Queries\Employee_Database_challenge.sql\DELIV1retir-titles.PNG" width="20" height="20">
+#### 	- Retiring titles tables shows the number of employees in their respective dept that are going to be retired. 90398 is the total number of employees that are retiring in their current titles. It shows that the senior engineer staff has the greatest number of retiring employees. retiring_titles.csv file shows this info. <img src="Queries\Employee_Database_challenge.sql\DELIV1retiringtitles.PNG" width="20" height="20">
+### 	From Deliverable 2:
+#### 	- Mentorship-eligibility table shows the total number of eligible employees that are about to go for ‘silver tsunami’ program. The total number of eligible employees is 1941. These employees are born in the year of 1965. <img src="Queries\Employee_Database_challenge.sql\del2mentor_eligtable.PNG" width="20" height="20">
+##### 	- Most of the employees that are eligible for this program are coming out from the “staff” department with the total number of 493 of eligible employees. This is shown in the mentoretiring_eligtitles csv file. <img src="Queries\Employee_Database_challenge.sql\deliv2deptnumb.PNG" width="20" height="20">
+## 3.	Summary: 
+### o	How many roles will need to be filled as the "silver tsunami" begins to make an impact? 
+As it is shown by the Mentorship-eligibility.csv file, there are total of 1940 roles that need to be filled for the upcoming program. 
+### o	Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees? 
+Comparing the two deliverables, it is categorically clear that the total number of retiring employees from the birth year between 1952 to 1955 has greater number of vacant positions than that of those that are born in 1965 and are eligible for mentorship program. Hence, it could be challenging for the retirement-ready employees to provide mentorship to the new-bees in the company. 

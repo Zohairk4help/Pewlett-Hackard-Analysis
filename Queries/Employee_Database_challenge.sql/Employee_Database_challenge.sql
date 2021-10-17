@@ -281,7 +281,15 @@ FROM blablatbles
 WHERE (birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 ORDER BY emp_no;
 
-
+-- :Number of eligiuble employees retiring by their most recent titles
+SELECT COUNT(titles)
+FROM mentorship_eligibilty;
+-- step 16 to 21: grouping the titles
+SELECT COUNT(me.titles), me.titles
+INTO mentoretiring_eligtitles
+FROM mentorship_eligibilty as me
+GROUP BY me.titles
+ORDER BY COUNT(me.titles) desc;
 
 
 
