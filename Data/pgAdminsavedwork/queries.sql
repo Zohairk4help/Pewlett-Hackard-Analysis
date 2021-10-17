@@ -189,6 +189,7 @@ LEFT JOIN dept_emp as de
 ON ri.emp_no = de.emp_no
 WHERE de.to_date = ('9999-01-01');
 
+
 -- sec 7.3.4 count, orderby and groupby for joined table separate the employees into their departments;
 -- Employee count by department number
 SELECT COUNT(ce.emp_no), de.dept_no
@@ -206,5 +207,80 @@ LEFT JOIN dept_emp as de
 ON ce.emp_no = de.emp_no
 GROUP BY de.dept_no
 ORDER BY de.dept_no;
+
+SELECT * FROM salaries
+ORDER BY to_date DESC;
+
+-- sec 7.3.5 [creation of new temp table]
+SELECT emp_no,
+    first_name,
+last_name,
+    gender
+INTO emp_info
+FROM employees
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+
+DROP TABLE emp_info;
+
+-- using shorthand notations that's why it was dropped: sth wrong with salary column
+SELECT e.emp_no,
+    e.first_name,
+e.last_name,
+    e.gender,
+    s.salary,
+    de.to_date
+-- INTO emp_info
+FROM employees as e
+INNER JOIN salaries as s
+ON (e.emp_no = s.emp_no)
+INNER JOIN dept_emp as de
+ON (e.emp_no = de.emp_no)
+WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+     AND (e.hire_date BETWEEN '1985-01-01' AND '1988-12-31')
+	 AND (de.to_date = '9999-01-01');
+	 
+-- sect 7.3.5 list 2 table creation
+-- List of managers per department reveals only 5 results! why? table hasnot created.
+SELECT  dm.dept_no,
+        d.dept_name,
+        dm.emp_no,
+        ce.last_name,
+        ce.first_name,
+        dm.from_date,
+        dm.to_date
+-- INTO manager_info
+FROM dept_manager AS dm
+    INNER JOIN departments AS d
+        ON (dm.dept_no = d.dept_no)
+    INNER JOIN current_emp AS ce
+        ON (dm.emp_no = ce.emp_no);
+		
+-- creation or filtering of the tables using mulitple tables in List 3: Department Retirees
+-- sth wrong with :a few folks are are appearing twice.
+SELECT ce.emp_no,
+ce.first_name,
+ce.last_name,
+d.dept_name
+-- INTO dept_info
+FROM current_emp as ce
+INNER JOIN dept_emp AS de
+ON (ce.emp_no = de.emp_no)
+INNER JOIN departments AS d
+ON (de.dept_no = d.dept_no);
+
+-- sect 7.3.6  going to create tailored lists b/c of the problems in 7.3.5:
+-- Create a query that will return only the information relevant to the Sales team
+d007
+SELECT ri.emp_no,
+ri.first_name,
+ri.last_name,
+d.dept_name  gender
+INTO emp_info
+FROM employees
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+
+
 
 

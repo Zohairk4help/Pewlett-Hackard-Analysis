@@ -1,0 +1,77 @@
+--  challenge work: DELIVERABLE 1:The Number of Retiring Employees by Title
+-- steps 1-2:
+SELECT emp_no, first_name, last_name FROM employees;
+SELECT titles, from_date, to_date FROM titles;
+
+-- Create a new table using the INTO clause. Join both tables on the primary key.
+SELECT employees.emp_no,
+	 employees.first_name,
+     employees.last_name,
+	 titles.titles,
+     titles.to_date,
+     titles.from_date
+INTO retirement_titles
+FROM employees
+INNER JOIN titles
+ON employees.emp_no = titles.emp_no
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+ORDER BY employees.emp_no;
+
+-- step 8 to 14: Use Dictinct with Orderby to remove duplicate rows
+SELECT emp_no, first_name, last_name, titles FROM retirement_titles;
+
+
+SELECT DISTINCT ON (emp_no) emp_no,
+first_name,
+last_name,
+titles
+INTO unique_titles
+FROM retirement_titles
+ORDER BY emp_no, to_date DESC;
+
+-- step 15:Number of employees retiring by their most recent titles
+SELECT COUNT(titles)
+FROM unique_titles;
+-- step 16 to 21: grouping the titles
+SELECT COUNT(ut.titles), ut.titles
+INTO retiring_titles
+FROM unique_titles as ut
+GROUP BY ut.titles
+ORDER BY COUNT(ut.titles) desc;
+
+
+-- DELIVERABLE 2: The Employees Eligible for the Mentorship Program
+-- steps 1-3:
+SELECT emp_no, first_name, last_name, birth_date FROM employees;
+SELECT from_date, to_date FROM dept_emp;
+SELECT titles FROM titles;
+
+-- steps 4-11 Create a new table using the INTO clause. Join both tables on the primary key.
+
+SELECT em.emp_no,
+	 em.first_name,
+     em.last_name,
+	 em.birth_date,
+	 t.titles,
+     de.from_date,
+	 de.to_date
+INTO BLABLAtbles
+FROM employees AS em
+INNER JOIN titles AS t
+ON em.emp_no = t.emp_no
+INNER JOIN dept_emp AS de
+ON em.emp_no = de.emp_no;
+
+
+SELECT DISTINCT ON (emp_no) emp_no,
+first_name,
+last_name,
+birth_date,
+titles,
+from_date,
+to_date
+INTO mentorship_eligibilty
+FROM blablatbles
+WHERE (birth_date BETWEEN '1965-01-01' AND '1965-12-31')
+ORDER BY emp_no;
+
